@@ -1,0 +1,102 @@
+From 0993897991d336b9d9434dd12f5b6b9e94ff65a4 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Bastien=20ROUCARI=C3=88S?= <roucaries.bastien@gmail.com>
+Date: Sun, 27 Aug 2017 23:12:10 +0200
+Subject: Fix testsuite to reduce depends
+
+Forwarded: no
+---
+ test/index.js | 80 -----------------------------------------------------------
+ 1 file changed, 80 deletions(-)
+
+diff --git a/test/index.js b/test/index.js
+index 79ee38a..49c3a15 100644
+--- a/test/index.js
++++ b/test/index.js
+@@ -1,87 +1,7 @@
+-var es = require('event-stream')
+ var through = require('through2')
+ var combine = require('..')
+ var test = require('tape')
+ 
+-test('re-emit error object for old streams', function (test) {
+-  test.plan(1)
+-
+-  var expectedErr = new Error('asplode')
+-
+-  var pipe = combine(
+-    es.through(function(data) {
+-      return this.emit('error', expectedErr)
+-    })
+-  )
+-
+-  pipe.on('error', function (err) {
+-    test.equal(err, expectedErr)
+-  })
+-
+-  pipe.write('pow')
+-})
+-
+-test('do not duplicate errors', function (test) {
+-
+-  var errors = 0;
+-  var pipe = combine(
+-    es.through(function(data) {
+-      return this.emit('data', data);
+-    }),
+-    es.through(function(data) {
+-      return this.emit('error', new Error(data));
+-    })
+-  )
+-
+-  pipe.on('error', function(err) {
+-    errors++
+-    test.ok(errors, 'expected error count')
+-      process.nextTick(function () {
+-        return test.end();
+-      })
+-  })
+-
+-  return pipe.write('meh');
+-})
+-
+-test('3 pipe do not duplicate errors', function (test) {
+-
+-  var errors = 0;
+-  var pipe = combine(
+-    es.through(function(data) {
+-      return this.emit('data', data);
+-    }),
+-    es.through(function(data) {
+-      return this.emit('error', new Error(data));
+-    }),
+-    es.through()
+-  )
+-
+-  pipe.on('error', function(err) {
+-    errors++
+-    test.ok(errors, 'expected error count')
+-      process.nextTick(function () {
+-        return test.end();
+-      })
+-  })
+-
+-  return pipe.write('meh');
+-
+-})
+-
+-test('0 argument through stream', function (test) {
+-  test.plan(3)
+-  var pipe = combine()
+-   , expected = [ 'beep', 'boop', 'robots' ]
+-
+-  pipe.pipe(es.through(function(data) {
+-    test.equal(data.toString('utf8'), expected.shift())
+-  }))
+-  pipe.write('beep')
+-  pipe.write('boop')
+-  pipe.end('robots')
+-})
+-
+ test('object mode', function (test) {
+   test.plan(2)
+   var pipe = combine.obj()

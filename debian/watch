@@ -1,0 +1,5 @@
+version=4
+opts=\
+dversionmangle=s/\+(debian|dfsg|ds|deb)(\.\d+)?$//,\
+filenamemangle=s/.*?(\d[\d\.-]*@ARCHIVE_EXT@)/node-stream-combiner2-$1/ \
+ https://github.com/substack/stream-combiner2/tags .*/archive/.*/v?([\d\.]+).tar.gz
