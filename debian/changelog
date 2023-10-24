@@ -1,5 +1,62 @@
-template-repository (1.0-1) unstable; urgency=medium
+node-stream-combiner2 (1.1.1-6) unstable; urgency=medium
 
-  * Initial release
+  [ Debian Janitor ]
+  * Apply multi-arch hints. + node-stream-combiner2: Add Multi-Arch: foreign.
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+  [ Yadd ]
+  * Update standards version to 4.6.1, no changes needed.
+
+ -- Jelmer Vernooĳ <jelmer@debian.org>  Thu, 01 Dec 2022 21:57:05 +0000
+
+node-stream-combiner2 (1.1.1-5) unstable; urgency=medium
+
+  * Team upload
+
+  [ Debian Janitor ]
+  * Remove constraints unnecessary since buster:
+    + Build-Depends: Drop versioned constraint on dpkg-dev.
+
+  [ Yadd ]
+  * Update standards version to 4.1.5, no changes needed.
+  * Declare compliance with policy 4.6.0
+  * Add "Rules-Requires-Root: no"
+  * Add debian/gbp.conf
+  * Fix filenamemangle
+  * Fix GitHub tags regex
+  * Drop dependency to nodejs
+  * Use dh-sequence-nodejs auto test & install
+  * Test: use tape instead of tap+tape
+
+ -- Yadd <yadd@debian.org>  Sat, 06 Nov 2021 16:28:57 +0100
+
+node-stream-combiner2 (1.1.1-4) unstable; urgency=medium
+
+  * Bump debhelper from old 12 to 13.
+
+ -- Debian Janitor <janitor@jelmer.uk>  Wed, 15 Sep 2021 09:27:49 +0100
+
+node-stream-combiner2 (1.1.1-3) unstable; urgency=medium
+
+  * Bump debhelper from old 11 to 12.
+  * Set debhelper-compat version in Build-Depends.
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+    Repository-Browse.
+  * Remove constraints unnecessary since buster:
+    + Build-Depends: Drop versioned constraint on node-tap, node-tape,
+      node-through2 and nodejs.
+    + node-stream-combiner2: Drop versioned constraint on nodejs in Depends.
+
+ -- Debian Janitor <janitor@jelmer.uk>  Sun, 29 Aug 2021 01:07:48 +0100
+
+node-stream-combiner2 (1.1.1-2) unstable; urgency=medium
+
+  * Move to salsa
+  * update compat and policy (no changes)
+
+ -- Bastien Roucariès <rouca@debian.org>  Thu, 07 Jun 2018 15:50:45 +0200
+
+node-stream-combiner2 (1.1.1-1) unstable; urgency=low
+
+  * Initial release (Closes: #873447)
+
+ -- Bastien Roucariès <rouca@debian.org>  Sun, 27 Aug 2017 22:43:00 +0200
